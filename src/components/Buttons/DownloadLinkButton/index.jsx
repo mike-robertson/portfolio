@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Button from 'components/Buttons';
 import styles from './DownloadLinkButton.css';
 
-const DownloadLinkButton = ({ url, color, borderColor, children }) => (
+const DownloadLinkButton = ({ url, color, borderColor, backgroundColor, children }) => (
   <Button
     tag="a"
     buttonProps={{ href: url, download: true }}

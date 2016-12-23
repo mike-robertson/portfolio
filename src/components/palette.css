@@ -9,6 +9,7 @@
   --colorSuccess: #66BB6A;
   --colorDanger:  #ff4c4c;
   --colorBlue:    #6BF;
+  --colorBlueAlpha:    rgba(102, 187, 255, 0.75);
   --colorBlueDark:   color(var(--colorBlue) lightness(50%));
   --colorMuted:   #727272;
   --colorYelor:   #FFAB40; /* Yelor = YellowOrange */

@@ -1,5 +1,14 @@
+@import "../../palette.css";
+
 .floatButton {
   position: fixed;
   bottom: 25px;
   right: 25px;
+  background-color: var(--textColorPrimaryAlpha);
+
+
+  &:hover {
+    background-color: var(--colorBlueAlpha);
+    color: var(--primaryTextColor) !important;
+  }
 }
