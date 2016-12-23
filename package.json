@@ -1,8 +1,7 @@
 {
-  "name": "opendota-ui",
-  "description": "Dota 2 Data Web UI",
-  "version": "1.0.1",
-  "license": "GPL-3.0",
+  "name": "michael-robertson-portfolio",
+  "description": "Mike Robertson Portfolio",
+  "version": "1.0.0",
   "scripts": {
     "webpack": "NODE_ENV=production webpack -p --bail",
     "start": "webpack-dev-server --compress",
@@ -20,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/odota/ui"
+    "url": "http://github.com/mike-robertson/portfolio"
   },
   "dependencies": {
     "brace": "^0.9.0",
