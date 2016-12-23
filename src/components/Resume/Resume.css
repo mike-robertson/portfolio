@@ -1,0 +1,15 @@
+@import "../palette.css";
+
+.container {
+  display: flex;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+}

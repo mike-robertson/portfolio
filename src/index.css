@@ -1,0 +1,33 @@
+@import "./components/palette.css";
+
+:global(html) {
+  background: var(--colorSuccess);
+  height: 100%;
+  overflow-x: hidden;
+}
+
+:global(body) {
+  margin: 0;
+  font-family: var(--fontFamily);
+  color: var(--textColorSecondary);
+  background: var(--textColorPrimary);
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+:global(a) {
+  color: var(--textColorSecondary);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--almostBlack);
+  }
+}
+
+:global(ul) {
+  padding: 0;
+}
+
+:global(li) {
+  list-style: none;
+}

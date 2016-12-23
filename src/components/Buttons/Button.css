@@ -1,0 +1,27 @@
+@import "../palette.css";
+
+.container {
+  border: 2px solid var(--almostBlack);
+  color: var(--almostBlack);
+  transition: var(--longTransition);
+  padding: 10px;
+  border-radius: 100px;
+  display: inline-block;
+  font-size: 16px;
+
+  &:hover {
+    background-color: var(--colorTransparentBlack);
+  }
+}
+
+.children {
+  & i {
+    margin-left: 5px;
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

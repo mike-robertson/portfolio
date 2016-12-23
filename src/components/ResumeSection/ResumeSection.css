@@ -1,0 +1,13 @@
+.container {
+  margin-top: 25px;
+}
+
+.date {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.resumeInfoContainer {
+  padding-left: 30px;
+  font-size: 14px;
+}

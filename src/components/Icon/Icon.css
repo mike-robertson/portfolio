@@ -1,0 +1,10 @@
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.file_download {
+  &::after {
+    content: "file_download";
+  }
+}

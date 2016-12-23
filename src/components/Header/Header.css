@@ -1,0 +1,7 @@
+@import "../palette.css";
+
+.container {
+  width: 100%;
+  position: fixed;
+  background-color: var(--textColorPrimaryAlpha);
+}
