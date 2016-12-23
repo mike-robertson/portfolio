@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+
+  & i {
+    align-self: flex-start;
+  }
+
+  & span {
+    margin-top: 3px;
+  }
+}

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import Text from 'components/Text';
 import Title from 'components/Title';
-import ResumeInfo from 'components/ResumeInfo';
+import ResumeExperienceInfo from 'components/ResumeExperienceInfo';
 import styles from './ResumeSection.css';
 
 const ResumeSection = ({ sectionInfo: {
@@ -13,15 +13,12 @@ const ResumeSection = ({ sectionInfo: {
   info,
 } }) => (
   <div className={styles.container}>
-    <Title>
-      <Text fontWeight="bold">
-        {subject},&nbsp;
-      </Text>
-      <span>{role} -&nbsp;</span><Text fontStyle="italic">{location}</Text>
-    </Title>
+    <Text tag="div" fontSize={24}><b>{subject}&nbsp;</b><div className={styles.role}>{role}</div></Text>
+
+    <div><i>{location}</i></div>
     <Text className={styles.date} textTransform="uppercase">{date}</Text>
     <div className={styles.resumeInfoContainer}>
-      {info.map(info => <ResumeInfo key={info} info={info} />)}
+      {info.map(info => <ResumeExperienceInfo key={info} info={info} />)}
     </div>
   </div>
 );

@@ -1,5 +1,9 @@
 .container {
   margin-top: 25px;
+
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 .date {
@@ -10,4 +14,8 @@
 .resumeInfoContainer {
   padding-left: 30px;
   font-size: 14px;
+}
+
+.role {
+  display: inline-block;
 }

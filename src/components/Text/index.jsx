@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
-const Text = ({ fontWeight, color, fontStyle, textTransform, fontSize, className, children }) => (
-  <span
+const Text = ({ fontWeight, color, fontStyle, textTransform, fontSize, className, children, Tag = 'span' }) => (
+  <Tag
     className={className}
     style={{
       fontWeight,
@@ -12,7 +12,7 @@ const Text = ({ fontWeight, color, fontStyle, textTransform, fontSize, className
     }}
   >
     {children}
-  </span>
+  </Tag>
 );
 
 Text.propTypes = {
@@ -22,6 +22,7 @@ Text.propTypes = {
   fontStyle: PropTypes.string,
   fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   textTransform: PropTypes.string,
+  Tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   children: PropTypes.node.isRequired,
 };
 

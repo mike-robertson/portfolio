@@ -2,14 +2,45 @@
 
 .container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .titleContainer {
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-width: 1244px) {
+    width: 100%;
+  }
 }
 
 .contentContainer {
   display: flex;
   flex-direction: column;
+  margin-left: 50px;
+
+  @media only screen and (max-width: 1244px) {
+    margin-left: 0;
+    margin-top: 25px;
+  }
+}
+
+.buttonContainer {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & > * {
+    width: 100%;
+    margin: 0 5px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }

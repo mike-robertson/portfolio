@@ -8,3 +8,9 @@
     content: "file_download";
   }
 }
+
+.label_outline {
+  &::after {
+    content: "label_outline";
+  }
+}

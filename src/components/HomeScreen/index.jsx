@@ -4,7 +4,7 @@ import styles from './HomeScreen.css';
 
 const HomeScreen = () => (
   <div className={styles.container}>
-    <Text fontSize={100}>Michael Robertson</Text>
+    <Text fontSize="16vw" className={styles.nameText}>Michael Robertson</Text>
     <Text fontSize={24} color={styles.green}>Software/Web Engineer</Text>
   </div>
 );
