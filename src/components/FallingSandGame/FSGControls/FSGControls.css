@@ -1,0 +1,27 @@
+@import "../../palette.css";
+
+.brushSizeContainer {
+  display: flex;
+  align-items: center;
+
+  & i {
+    transition: var(--normalTransition);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--colorBlue);
+    }
+  }
+
+  & > * {
+    margin: 0 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

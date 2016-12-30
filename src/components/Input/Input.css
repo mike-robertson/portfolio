@@ -1,0 +1,12 @@
+@import "../palette";
+
+.input {
+  padding: 5px;
+  font-size: 14px;
+  border: 2px solid var(--colorMutedLight);
+  outline: none;
+
+  &:focus {
+    border-color: var(--colorBlue);
+  }
+}

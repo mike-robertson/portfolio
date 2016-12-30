@@ -13,6 +13,10 @@
   background: var(--textColorPrimary);
   min-height: 100%;
   box-sizing: border-box;
+
+  & * {
+    box-sizing: border-box;
+  }
 }
 
 :global(a) {

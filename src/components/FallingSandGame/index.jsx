@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import fsg from 'fsg';
+import FSGControls from 'components/FallingSandGame/FSGControls';
+import styles from './FallingSandGame.css';
 
-const FallingSandGame = () => (
-  <div>
-    <canvas>
+class FallingSandGame extends Component {
+  constructor() {
+    super();
+    const { attachCanvas, fsgControls } = fsg();
+    this.attachCanvas = attachCanvas;
+    this.state = {
+      fsgControls,
+    };
+  }
 
-    </canvas>
-  </div>
-);
+  componentDidMount() {
+    this.attachCanvas();
+  }
+
+  render() {
+    return (
+      <div>
+        <div
+          id="fsgCanvasContainer"
+          className={styles.container}
+        />
+        <FSGControls controls={this.state.fsgControls} />
+      </div>
+    );
+  }
+}
 
 export default FallingSandGame;

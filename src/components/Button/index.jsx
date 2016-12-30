@@ -4,11 +4,22 @@ import classnames from 'classnames';
 
 import styles from './Button.css';
 
-const Button = ({ tag, buttonProps, icon, color, borderColor, className, width, children }) => {
+const Button = ({
+  tag,
+  buttonProps,
+  icon,
+  color,
+  onClick,
+  borderColor,
+  className,
+  width,
+  children,
+}) => {
   const Tag = tag || 'button'; // Don't want nulls
   return (
     <Tag
       {...buttonProps}
+      onClick={onClick}
       className={classnames(
         styles.container,
         className,
@@ -33,6 +44,7 @@ Button.propTypes = {
   buttonProps: PropTypes.object,
   icon: PropTypes.string,
   color: PropTypes.string,
+  onClick: PropTypes.func,
   borderColor: PropTypes.string,
   className: PropTypes.string,
   width: PropTypes.number,

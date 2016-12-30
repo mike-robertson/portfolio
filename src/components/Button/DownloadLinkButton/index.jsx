@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Button from 'components/Buttons';
+import Button from 'components/Button';
 import styles from './DownloadLinkButton.css';
 
 const DownloadLinkButton = ({ url, color, borderColor, backgroundColor, children }) => (

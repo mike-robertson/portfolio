@@ -9,6 +9,9 @@ const links = [
   }, {
     name: 'Resume',
     url: '/resume',
+  }, {
+    name: 'FSG',
+    url: '/fsg',
   },
 ];
 

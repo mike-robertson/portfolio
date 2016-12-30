@@ -1,0 +1,22 @@
+@import "../palette.css";
+
+.container {
+  border-bottom: 1px solid var(--colorMutedLight);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  transition: var(--normalTransition);
+  background-color: var(--textColorPrimaryAlpha);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: var(--colorBlue);
+    color: var(--primaryTextColor);
+  }
+}

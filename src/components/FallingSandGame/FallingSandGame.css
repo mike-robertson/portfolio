@@ -1,0 +1,6 @@
+.container {
+  & canvas {
+    cursor: default;
+    user-select: none;
+  }
+}

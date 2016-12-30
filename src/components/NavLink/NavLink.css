@@ -1,46 +1,46 @@
 @import "../palette.css";
 
-.link {
-  margin: 0 5px;
-  padding: 15px;
-
-  &:first-child {
-    margin-left: 0;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
+.bar {
+  position: absolute;
+  left: 0;
+  top: -5px;
+  height: 5px;
+  width: 100%;
+  background-color: var(--colorSuccess);
 }
 
 .selected {
-  border-top: 5px solid var(--colorSuccess);
-  padding-top: 10px;
-  animation: fadeInColor 1s;
+  & .bar {
+    top: 0;
+    animation: fadeInColor 300ms;
+  }
 }
 
 .wasSelected {
   composes: selected;
-  border-color: var(--textColorPrimary);
-  animation: fadeOutColor 1s;
+
+  & .bar {
+    top: -5px;
+    animation: fadeOutColor 300ms;
+  }
 }
 
 @keyframes fadeInColor {
   0% {
-    border-color: var(--textColorPrimary);
+    top: -5px;
   }
 
   100% {
-    border-color: var(--colorSuccess);
+    transform: translateY(0);
   }
 }
 
 @keyframes fadeOutColor {
   0% {
-    border-color: var(--colorSuccess);
+    top: 0;
   }
 
   100% {
-    border-color: var(--textColorPrimary);
+    transform: translateY(-5px);
   }
 }

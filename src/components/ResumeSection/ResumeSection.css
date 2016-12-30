@@ -1,3 +1,5 @@
+@import "../palette.css";
+
 .container {
   margin-top: 25px;
 
@@ -18,4 +20,12 @@
 
 .role {
   display: inline-block;
+}
+
+.link {
+  color: var(--primaryLinkColor);
+
+  &:hover {
+    color: var(--colorBlueDark);
+  }
 }

@@ -1,9 +1,11 @@
 @import "../palette.css";
 
 .container {
-  height: 100vh;
+  height: 73vh;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top: 100px;
 
   @media only screen and (max-width: 550px) {
     align-items: center;
@@ -18,4 +20,10 @@
   @media only screen and (max-width: 550px) {
     text-align: center;
   }
+}
+
+.content {
+  margin-top: calc(73vh + 100px);
+  position: relative;
+  background-color: var(--textColorPrimary);
 }

@@ -1,0 +1,19 @@
+@import "../palette.css";
+
+.container {
+  position: absolute;
+  top: 4px;
+  left: 174px;
+  cursor: pointer;
+}
+
+.closed {
+  color: var(--colorMutedLight);
+  transition: var(--normalTransition);
+}
+
+.open {
+  composes: closed;
+  color: var(--colorDanger);
+  transform: scaleY(-1);
+}

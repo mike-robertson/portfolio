@@ -6,7 +6,6 @@
   right: 25px;
   background-color: var(--textColorPrimaryAlpha);
 
-
   &:hover {
     background-color: var(--colorBlueAlpha);
     color: var(--primaryTextColor) !important;

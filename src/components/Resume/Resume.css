@@ -18,10 +18,27 @@
   display: flex;
   flex-direction: column;
   margin-left: 50px;
+  margin-top: 10px;
+  max-width: 55%;
+
+  & > * {
+    animation: fadeIn 750ms;
+  }
 
   @media only screen and (max-width: 1244px) {
     margin-left: 0;
     margin-top: 25px;
+    max-width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
@@ -42,5 +59,62 @@
     &:last-child {
       margin-right: 0;
     }
+  }
+}
+
+.link {
+  margin: 0 5px;
+  padding: 15px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.linkButton {
+  &:hover {
+    background-color: var(--colorSuccess) !important;
+    color: var(--textColorPrimary) !important;
+  }
+}
+
+.selected {
+  background-color: var(--colorSuccess);
+  color: var(--textColorPrimary);
+  animation: fadeInColor 1s;
+}
+
+.wasSelected {
+  composes: selected;
+  background-color: var(--textColorPrimary);
+  color: var(--textColorSecondary);
+  animation: fadeOutColor 1s;
+}
+
+@keyframes fadeInColor {
+  0% {
+    background-color: var(--textColorPrimary);
+    color: var(--textColorSecondary);
+  }
+
+  100% {
+    background-color: var(--colorSuccess);
+    color: var(--textColorPrimary);
+  }
+}
+
+@keyframes fadeOutColor {
+  0% {
+    background-color: var(--colorSuccess);
+    color: var(--textColorPrimary);
+  }
+
+  100% {
+    background-color: var(--textColorPrimary);
+    color: var(--colorSuccess);
   }
 }

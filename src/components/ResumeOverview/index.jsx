@@ -1,10 +1,11 @@
 import React from 'react';
-import Text from 'components/Text';
+import ResumeInfo from 'components/ResumeInfo';
+import { resumeInfo } from 'components/Resume/sectionInfo';
 import styles from './ResumeOverview.css';
 
 const ResumeOverview = () => (
   <div className={styles.container}>
-    test
+    <ResumeInfo {...resumeInfo} />
   </div>
 );
 
