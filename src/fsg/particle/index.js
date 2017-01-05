@@ -17,10 +17,11 @@ class Particle {
     this.afterMovementX = this.afterMovementX.bind(this);
     this.afterMovementY = this.afterMovementY.bind(this);
     this.isParticleInBounds = this.isParticleInBounds.bind(this);
+    this.isLiquid = this.isLiquid.bind(this);
     this.move = this.move.bind(this);
     this.nextAvailable = this.nextAvailable.bind(this);
     this.updatePosition = this.updatePosition.bind(this);
-    this.liquidSwap = this.liquidSwap.bind(this);
+    this.particleSwap = this.particleSwap.bind(this);
     this.allSurroundingParticles = this.allSurroundingParticles.bind(this);
   }
 
@@ -34,8 +35,9 @@ class Particle {
 
   update() {
     if (this.velocity.x !== 0 || this.velocity.y !== 0) {
-      this.move();
+      return this.move();
     }
+    return false;
   }
 
   afterMovementX() {
@@ -81,7 +83,7 @@ class Particle {
         leftX -= 1;
         if (leftX > 0) {
           if (!fsgGame.checkParticle(leftX, y + yChange)) {
-            for (let x = this.x - 1; x > leftX; x -= 1) {
+            for (let x = this.position.x - 1; x > leftX; x -= 1) {
               if (fsgGame.checkParticle(x, y)) {
                 left = false;
               }
@@ -99,7 +101,7 @@ class Particle {
         rightX += 1;
         if (rightX <= fsgGame.canvas.width) {
           if (!fsgGame.checkParticle(rightX, y + yChange)) {
-            for (let n = this.x + 1; n < rightX; n += 1) {
+            for (let n = this.position.x + 1; n < rightX; n += 1) {
               if (fsgGame.checkParticle(n, y)) {
                 right = false;
               }
@@ -113,21 +115,25 @@ class Particle {
         }
       }
     }
-    return this.x;
+    return this.position.x;
   }
 
   static liquidUnderneath(x, y) {
-    if (fsgGame.pixelArray.exists(x, y) && fsgGame.pixelArray.get(x, y).type === particleType.WATER) {
+    if (fsgGame.pixelArray.exists(x, y) && fsgGame.pixelArray.get(x, y).isLiquid()) {
       return true;
     }
     return false;
+  }
+
+  isLiquid() {
+    return this.type === particleType.WATER;
   }
 
   updatePosition(x, y) {
     this.position = { x, y };
   }
 
-  liquidSwap(x, y) {
+  particleSwap(x, y) {
     const liquidParticle = fsgGame.pixelArray.get(x, y);
     fsgGame.pixelArray.add(this.position.x, this.position.y, liquidParticle);
     fsgGame.pixelArray.add(x, y, this);
@@ -135,6 +141,14 @@ class Particle {
     const myOldPosition = this.position;
     this.updatePosition(liquidParticle.position.x, liquidParticle.position.y);
     liquidParticle.updatePosition(myOldPosition.x, myOldPosition.y);
+  }
+
+  updateParticlePosition(x, y) {
+    if (!fsgGame.checkParticle(x, y)) {
+      fsgGame.pixelArray.remove(this.position.x, this.position.y);
+      this.updatePosition(x, y);
+      fsgGame.pixelArray.add(x, y, this);
+    }
   }
 
   updatePositionFallingParticleRight() {
@@ -149,7 +163,7 @@ class Particle {
     const { x, y } = this.position;
     const { y: yVel } = this.velocity;
     if (this.sinks && Particle.liquidUnderneath(x + xVel, y + yVel)) {
-      this.liquidSwap(x + xVel, y + yVel);
+      this.particleSwap(x + xVel, y + yVel);
     } else {
       fsgGame.pixelArray.remove(x, y);
       this.updatePosition(x + xVel, y + yVel);

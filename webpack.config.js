@@ -103,7 +103,7 @@ if (!isProd) {
 
   config.entry = [
     'webpack-dev-server/client?http://0.0.0.0:8080', // WebpackDevServer host and port
-    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+    'webpack/hot/dev-server', // "only" prevents reload on syntax errors
     'babel-polyfill',
     './src',
   ];

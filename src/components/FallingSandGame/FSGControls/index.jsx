@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as particleType from 'fsg/particleType';
 import { setParticleType } from 'actions/fsg';
 import * as fsg from 'reducers/fsg';
+import { debounce } from 'utility';
 
 import Select from 'components/Select';
 import Icon from 'components/Icon';
@@ -27,13 +28,17 @@ class FSGControls extends Component {
     this.decBrushSize = this.decBrushSize.bind(this);
     this.updateParticleCount = this.updateParticleCount.bind(this);
     this.setParticleType = this.setParticleType.bind(this);
-
-    props.controls.setUpdateParticleCount(this.updateParticleCount);
   }
 
   componentWillMount() {
     const { setParticleType, controls } = this.props;
+    controls.setUpdateParticleCount(debounce(this.updateParticleCount, 500));
     setParticleType(controls.currentParticleType);
+  }
+
+  componentWillUnmount() {
+    const { controls } = this.props;
+    controls.setUpdateParticleCount(f => f);
   }
 
   setParticleType(key) {

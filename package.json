@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "webpack": "NODE_ENV=production webpack -p --bail",
-    "start": "webpack-dev-server --compress",
+    "start": "webpack-dev-server",
     "start:noc": "webpack-dev-server",
     "startstage": "API_HOST=http://hchung.westus.cloudapp.azure.com:5000 npm start",
     "build": "npm install && npm run lintnofix && npm run lint:css && npm test && npm run webpack",

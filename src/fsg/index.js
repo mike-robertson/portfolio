@@ -2,6 +2,7 @@ import { calculateRelativeXY } from 'utility';
 import * as particleType from 'fsg/particleType';
 import Wall from 'fsg/particle/wall';
 import Sand from 'fsg/particle/sand';
+import Water from 'fsg/particle/water';
 
 const initializeCanvas = () => {
   const canvas = document.createElement('canvas');
@@ -80,7 +81,6 @@ class FSGGame {
     this.createParticles = this.createParticles.bind(this);
     this.checkParticle = this.checkParticle.bind(this);
     this.isMouseInBounds = this.isMouseInBounds.bind(this);
-    this.setUpdateParticleCount = this.setUpdateParticleCount.bind(this);
     this.drawParticle = this.drawParticle.bind(this);
     this.updateParticle = this.updateParticle.bind(this);
 
@@ -88,10 +88,6 @@ class FSGGame {
     this.mouseDownEvent = canvas.addEventListener('mousedown', this.captureMouseCoords);
 
     this.clearCanvas();
-  }
-
-  setUpdateParticleCount(updateParticleCount) {
-    this.updateParticleCount = updateParticleCount;
   }
 
   executeGameLoop() {
@@ -157,6 +153,7 @@ class FSGGame {
   }
 
   updateParticle(particle, index) {
+    // Update returns true if the particle moved or was destroyed.
     particle.update();
     if (!particle.isParticleInBounds()) {
       this.particles.splice(index, 1);
@@ -169,6 +166,14 @@ class FSGGame {
       return true;
     }
     return false;
+  }
+
+  getParticle(x, y) {
+    if ((x > 0 && x < this.canvas.width + 1 && y > 0 && y < this.canvas.height + 1)
+        && this.pixelArray.exists(x, y)) {
+      return this.pixelArray.get(x, y);
+    }
+    return null;
   }
 
   isMouseInBounds() {
@@ -205,7 +210,7 @@ class FSGGame {
   render() {
     this.clearCanvas();
     this.particles.forEach(this.drawParticle);
-    this.updateParticleCount(this.particles.length);
+    this.fsgControls.updateParticleCount(this.particles.length);
   }
 }
 
@@ -267,7 +272,6 @@ const {
 export const fsgGame = new FSGGame(context, canvas, fsgControls);
 
 const fsg = () => {
-  fsgGame.setUpdateParticleCount(fsgControls.updateParticleCount);
   // Object.freeze(fsgGame);
 
   return {

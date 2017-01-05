@@ -18,29 +18,16 @@ class Sand extends Particle {
     let didMove = super.move();
     if (!didMove) {
       if (Particle.liquidUnderneath(this.position.x + this.velocity.x, this.position.y + this.velocity.y)) {
-        this.waterSwap(this.position.x + this.velocity.x, this.position.y + this.velocity.y);
+        this.particleSwap(this.position.x + this.velocity.x, this.position.y + this.velocity.y);
       } else {
-        let left = false;
-        let right = false;
-
-        if (!fsgGame.checkParticle(this.position.x - 1, this.position.y + this.velocity.y)
-            || Particle.liquidUnderneath(this.position.x - 1, this.position.y + this.velocity.y)) {
-          left = true;
-        }
-        if (!fsgGame.checkParticle(this.position.x + 1, this.position.y + this.velocity.y)
-            || Particle.liquidUnderneath(this.position.x + 1, this.position.y + this.velocity.y)) {
-          right = true;
-        }
-        if (left && right) {
-          if (Math.random() >= 0.5) {
-            didMove = this.updatePositionFallingParticleLeft();
-          } else {
+        const particleLeft = fsgGame.getParticle(this.position.x - 1, this.position.y + this.velocity.y);
+        if (!particleLeft || particleLeft.isLiquid()) {
+          didMove = this.updatePositionFallingParticleLeft();
+        } else {
+          const particleRight = fsgGame.getParticle(this.position.x + 1, this.position.y + this.velocity.y);
+          if (!particleRight || particleRight.isLiquid()) {
             didMove = this.updatePositionFallingParticleRight();
           }
-        } else if (left) {
-          didMove = this.updatePositionFallingParticleLeft();
-        } else if (right) {
-          didMove = this.updatePositionFallingParticleRight();
         }
       }
     }

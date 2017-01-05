@@ -20,3 +20,17 @@ export const calculateRelativeXY = ({ clientX, clientY, target }) => {
 
 export const getDistanceFromBottom = ({ clientY }) =>
   Math.floor(document.documentElement.clientHeight - clientY);
+
+export const debounce = (func, wait) => {
+  let timeout = null;
+  return (...args) => {
+    if (timeout === null) {
+      if (timeout === null) {
+        func(...args);
+      }
+      timeout = setTimeout(() => {
+        timeout = null;
+      }, wait);
+    }
+  };
+};
