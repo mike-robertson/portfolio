@@ -28,7 +28,8 @@
 }
 
 .content {
-  margin-top: calc(100vh + 100px);
   position: relative;
   background-color: var(--textColorPrimary);
+  margin: calc(100vh + 100px) -50px -25px -50px;
+  padding: 0 50px 25px 50px;
 }
