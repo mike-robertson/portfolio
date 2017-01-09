@@ -1,0 +1,2 @@
+export const SET_SCROLL_PROPERTIES = 'app/navbar/SET_SCROLL_PROPERTIES';
+export const RESET_SCROLL_PROPERTIES = 'app/navbar/RESET_SCROLL_PROPERTIES';

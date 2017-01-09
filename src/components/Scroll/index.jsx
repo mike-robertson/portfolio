@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { blendColor, objectifyRGB, stringifyRGB } from 'utility';
 import { selectors } from 'reducers/navbar';
 import NavLink from 'components/NavLink';
-import styles from './NavBar.css';
 
 class NavBar extends Component {
   constructor(props) {
@@ -30,6 +29,8 @@ class NavBar extends Component {
       endChangeHeight,
       startColor,
       startBackgroundColor,
+      endColor,
+      endBackgroundColor,
     } = this.props;
     const { pageYOffset } = window;
     if (pageYOffset < startChangeHeight) {
@@ -39,16 +40,16 @@ class NavBar extends Component {
       });
     } else if (pageYOffset <= endChangeHeight) {
       const percent = 1 - ((endChangeHeight - pageYOffset) / (endChangeHeight - startChangeHeight));
-      const blendedColor = blendColor(objectifyRGB(startColor), objectifyRGB(styles.black9), percent);
-      const blendedBackgroundColor = blendColor(objectifyRGB(startBackgroundColor), objectifyRGB(styles.textColorPrimaryAlpha), percent);
+      const blendedColor = blendColor(objectifyRGB(startColor), objectifyRGB(endColor), percent);
+      const blendedBackgroundColor = blendColor(objectifyRGB(startBackgroundColor), objectifyRGB(endBackgroundColor), percent);
       this.setState({
         color: stringifyRGB(blendedColor),
         backgroundColor: stringifyRGB(blendedBackgroundColor),
       });
     } else {
       this.setState({
-        color: styles.black9,
-        backgroundColor: styles.textColorPrimaryAlpha,
+        color: endColor,
+        backgroundColor: endBackgroundColor,
       });
     }
   }

@@ -34,3 +34,35 @@ export const debounce = (func, wait) => {
     }
   };
 };
+
+
+export const blendColor = (
+  { red: r1, green: g1, blue: b1, alpha: a1 = 1 },
+  { red: r2, green: g2, blue: b2, alpha: a2 = 1 },
+  percent,
+) => {
+  return ({
+    red: Math.floor(((r2 - r1) * percent) + r1),
+    green: Math.floor(((g2 - g1) * percent) + g1),
+    blue: Math.floor(((b2 - b1) * percent) + b1),
+    alpha: ((a2 - a1) * percent) + a1,
+  });
+};
+
+export const objectifyRGB = (rgbString) => {
+  // console.log(rgbString);
+  // console.log(rgbString.replace(/\s/g, '').match(/rgba?\(([0-9]+),([0-9]+),([0-9]+),?([0-9]+?\.?[0-9]+?)?\)/));
+  const [, red, green, blue, alpha = 1] = rgbString
+    .replace(/\s/g, '')
+    .match(/rgba?\(([0-9]+),([0-9]+),([0-9]+),?([0-9]?\.?[0-9]+)?\)/);
+
+  return {
+    red: Number(red),
+    green: Number(green),
+    blue: Number(blue),
+    alpha: Number(alpha),
+  };
+};
+
+export const stringifyRGB = ({ red, green, blue, alpha = 1 }) =>
+  `rgba(${red},${green},${blue},${alpha})`;

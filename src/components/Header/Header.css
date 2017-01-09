@@ -3,6 +3,6 @@
 .container {
   width: 100%;
   position: fixed;
-  background-color: var(--textColorPrimaryAlpha);
+  /*background-color: var(--textColorPrimaryAlpha);*/
   z-index: 3;
 }

@@ -5,7 +5,7 @@ import RoutingButton from 'components/Button/RoutingButton';
 import Text from 'components/Text';
 import styles from './NavLink.css';
 
-const NavLink = ({ link, path }) => (
+const NavLink = ({ link, path, style }) => (
   <RoutingButton
     key={link.name}
     link={link.url}
@@ -16,7 +16,7 @@ const NavLink = ({ link, path }) => (
   >
     <li className={styles.container}>
       <div className={styles.bar} />
-      <Link to={link.url}><Text fontSize={24}>{link.name}</Text></Link>
+      <Link to={link.url}><Text fontSize={24} style={style}>{link.name}</Text></Link>
     </li>
   </RoutingButton>
 );
@@ -27,6 +27,7 @@ NavLink.propTypes = {
     url: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
+  style: PropTypes.object,
 };
 
 export default NavLink;

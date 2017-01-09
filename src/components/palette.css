@@ -23,9 +23,9 @@
 
   --primaryLinkColor: var(--colorBlue);
 
-  --textColorPrimary:     #F5F5F5;
+  --textColorPrimary:     rgb(245, 245, 245);
   --textColorPrimaryAlpha:     rgba(245, 245, 245, 0.75);
-  --primaryTextColor:     #F5F5F5;
+  --primaryTextColor:     rgb(245, 245, 245);
   --textColorSecondary:   #212020;
   --secondaryTextColor:   #212020;
 
@@ -97,6 +97,7 @@
 
   textColorPrimary:    var(--textColorPrimary);
   primaryTextColor:    var(--textColorPrimary);
+  textColorPrimaryAlpha: var(--textColorPrimaryAlpha);
   textColorSecondary:  var(--textColorSecondary);
   secondaryTextColor:  var(--textColorSecondary);
   dividerColor: var(--dividerColor);
