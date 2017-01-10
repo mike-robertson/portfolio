@@ -6,7 +6,7 @@ const HomeScreen = () => (
   <div>
     <div className={styles.container}>
       <Text fontSize="14vw" className={styles.nameText}>Michael Robertson</Text>
-      <Text fontSize={24} color={styles.green}>Software/Web Engineer</Text>
+      <Text fontSize={24} color={styles.green}>Software Engineer</Text>
     </div>
     <div className={styles.content}>
       {Array.from({ length: 100 }, () => <div>Text</div>)}
