@@ -4,7 +4,8 @@
   --colorTransparentBlack: rgba(0, 0, 0, 0.1);
   --defaultPrimaryColor: rgba(0, 0, 0, 0.4);
   --darkPrimaryColor: rgba(0, 0, 0, 0.6);
-  --almostBlack: rgba(0, 0, 0, 0.9);
+  --almostBlack: rgb(24, 24, 24);
+  /*--almostBlack: rgba(0, 0, 0, 0.9);*/
 
   --colorSuccess: #66BB6A;
   --colorDanger:  #ff4c4c;
