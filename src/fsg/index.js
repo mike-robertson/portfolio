@@ -7,8 +7,8 @@ import Water from 'fsg/particle/water';
 const initializeCanvas = () => {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
-  canvas.width = 700;
-  canvas.height = 500;
+  // canvas.width = 700;
+  // canvas.height = 500;
   canvas.class = 'fsgContainer';
   return {
     context,
@@ -17,14 +17,26 @@ const initializeCanvas = () => {
 };
 
 class PixelArray {
-  constructor({ width, height }) {
+  constructor({ width, height }, loadState) {
     this.pixels = Array.from(
       { length: width + 1 },
-      () => Array.from({ length: height + 1 }),
+      (val, x) => Array.from(
+        { length: height + 1 },
+        (val, y) => loadState && loadState.safeGet(x, y),
+      ),
     );
+
     this.add = this.add.bind(this);
+    this.get = this.get.bind(this);
+    this.safeGet = this.safeGet.bind(this);
     this.remove = this.remove.bind(this);
     this.forEach = this.forEach.bind(this);
+  }
+
+  safeGet(x, y) {
+    return this.pixels[x] !== undefined && this.pixels[x] !== null
+      ? this.pixels[x][y]
+      : undefined;
   }
 
   get(x, y) {
@@ -58,12 +70,20 @@ class PixelArray {
   }
 
   exists(x, y) {
+    if (!this.pixels[x]) {
+      console.log(x, y, this.pixels[x])
+    }
     return this.pixels[x][y] !== null && this.pixels[x][y] !== undefined;
   }
 }
 
 class FSGGame {
-  constructor(context, canvas, fsgControls, updateParticleCount = f => f) {
+  constructor(
+    context,
+    canvas,
+    fsgControls,
+    updateParticleCount = f => f,
+  ) {
     this.context = context;
     this.canvas = canvas;
     this.fsgControls = fsgControls;
@@ -83,11 +103,18 @@ class FSGGame {
     this.isMouseInBounds = this.isMouseInBounds.bind(this);
     this.drawParticle = this.drawParticle.bind(this);
     this.updateParticle = this.updateParticle.bind(this);
+    this.updateCanvas = this.updateCanvas.bind(this);
 
     this.mouseMoveEvent = canvas.addEventListener('mousemove', this.captureMouseCoords, false);
     this.mouseDownEvent = canvas.addEventListener('mousedown', this.captureMouseCoords);
 
     this.clearCanvas();
+  }
+
+  updateCanvas({ width, height }) {
+    this.canvas.width = width;
+    this.canvas.height = height;
+    this.pixelArray = new PixelArray(this.canvas, this.pixelArray);
   }
 
   executeGameLoop() {
@@ -276,8 +303,9 @@ const fsg = () => {
 
   return {
     fsgControls,
-    attachCanvas: () => {
+    attachCanvas: (state, { height = 500, width = 700 }) => {
       const container = document.getElementById('fsgCanvasContainer');
+      fsgGame.updateCanvas({ height, width });
       container.appendChild(canvas);
       setInterval(fsgGame.executeGameLoop, 30);
     },

@@ -14,7 +14,8 @@ class FallingSandGame extends Component {
   }
 
   componentDidMount() {
-    this.attachCanvas();
+    const { canvasHeight: height, canvasWidth: width } = this.props;
+    this.attachCanvas(this.props.fsgState, { height, width });
   }
 
   render() {
