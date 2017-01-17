@@ -9,15 +9,30 @@ import styles from './NavBar.css';
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.handleOnScroll = this.handleOnScroll.bind(this);
+
     this.state = {
       backgroundColor: props.startBackgroundColor,
       color: props.startColor,
     };
+
+    this.handleOnScroll = this.handleOnScroll.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleOnScroll);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      startColor,
+      startBackgroundColor,
+    } = this.props;
+    if (nextProps.startColor !== startColor || nextProps.startBackgroundColor !== startBackgroundColor) {
+      this.setState({
+        color: nextProps.startColor,
+        backgroundColor: nextProps.startBackgroundColor,
+      });
+    }
   }
 
   componentWillUnmount() {

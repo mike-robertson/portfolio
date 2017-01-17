@@ -1,6 +1,7 @@
 @import "../palette.css";
 
 .container {
+  cursor: pointer;
   border: 2px solid var(--almostBlack);
   color: var(--almostBlack);
   transition: var(--longTransition);
@@ -8,6 +9,7 @@
   border-radius: 100px;
   display: inline-block;
   font-size: 16px;
+  background-color: var(--textColorPrimary);
 
   &:hover {
     background-color: var(--colorTransparentBlack);

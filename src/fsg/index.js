@@ -7,8 +7,6 @@ import Water from 'fsg/particle/water';
 const initializeCanvas = () => {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
-  // canvas.width = 700;
-  // canvas.height = 500;
   canvas.class = 'fsgContainer';
   return {
     context,
@@ -70,9 +68,6 @@ class PixelArray {
   }
 
   exists(x, y) {
-    if (!this.pixels[x]) {
-      console.log(x, y, this.pixels[x])
-    }
     return this.pixels[x][y] !== null && this.pixels[x][y] !== undefined;
   }
 }
@@ -111,10 +106,19 @@ class FSGGame {
     this.clearCanvas();
   }
 
-  updateCanvas({ width, height }) {
+  updateCanvas(
+    particleState = [],
+    { width, height },
+  ) {
     this.canvas.width = width;
     this.canvas.height = height;
-    this.pixelArray = new PixelArray(this.canvas, this.pixelArray);
+    this.pixelArray = new PixelArray(this.canvas);
+    this.particles = [];
+    particleState.forEach(({ position: { x, y }, type }) => {
+      if (x <= this.canvas.width && y <= this.canvas.height) {
+        this.createParticle(x, y, type);
+      }
+    });
   }
 
   executeGameLoop() {
@@ -210,6 +214,14 @@ class FSGGame {
         && y !== null && y - brushSize > 0 && y <= this.canvas.height;
   }
 
+  exportState() {
+    // We only need particle type and position to rebuild the state.
+    return this.particles.map(({ type, position }) => ({
+      type,
+      position,
+    }));
+  }
+
   update() {
     if (this.isMouseInBounds()) {
       this.createParticles(
@@ -298,6 +310,8 @@ const {
 
 export const fsgGame = new FSGGame(context, canvas, fsgControls);
 
+export const exportFsgState = () => fsgGame.exportState();
+
 const fsg = () => {
   // Object.freeze(fsgGame);
 
@@ -305,7 +319,7 @@ const fsg = () => {
     fsgControls,
     attachCanvas: (state, { height = 500, width = 700 }) => {
       const container = document.getElementById('fsgCanvasContainer');
-      fsgGame.updateCanvas({ height, width });
+      fsgGame.updateCanvas(state || [], { height, width });
       container.appendChild(canvas);
       setInterval(fsgGame.executeGameLoop, 30);
     },

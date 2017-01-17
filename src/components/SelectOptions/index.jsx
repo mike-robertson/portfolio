@@ -5,7 +5,7 @@ import styles from './SelectOptions.css';
 
 const SelectOptions = ({ options, onClick, noRoomBelow }) => {
   const optionsList = noRoomBelow
-    ? options.reverse()
+    ? [...options].reverse()
     : options;
   return (
     <div className={classnames(styles.container, noRoomBelow && styles.noRoomBelow)}>

@@ -18,6 +18,7 @@
   },
   "extends": "airbnb",
   "rules": {
+    "arrow-parens": ["error", "as-needed"],
     "max-len": ["error", 150],
     "no-shadow": 0,
     "no-mixed-operators": ["error", {

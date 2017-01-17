@@ -1,8 +1,9 @@
 import * as navbarActions from 'actionTypes/navbar';
+import styles from 'components/palette.css';
 
 export const initialState = {
-  startColor: null,
-  startBackgroundColor: null,
+  startColor: styles.black9,
+  startBackgroundColor: styles.textColorPrimaryAlpha,
   startChangeHeight: null,
   endChangeHeight: null,
 };

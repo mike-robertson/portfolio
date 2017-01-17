@@ -1,6 +1,25 @@
 @import "../../palette.css";
 
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+}
+
+.verticalGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .brushSizeContainer {
+  composes: group;
   display: flex;
   align-items: center;
 
